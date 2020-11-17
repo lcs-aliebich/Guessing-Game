@@ -29,36 +29,40 @@ struct ContentView: View {
                 
                 Button("Submit Guess") {
                     // Check the guess
-                    checkGuess() 
+                    checkGuess()
                     
                 }
                 .padding(.top)
                 Text("You guessed \(theUserGuess).")
                 Spacer()
-                Text( \(feedback))
+                Text(" \(feedback)")
                 Spacer()
-            
-            
+                
+                
             }
             .navigationTitle("Guessing Game")
         }
     }
     
- // Chwck what user guessed against taarget
+    // Chwck what user guessed against taarget
     
     func checkGuess() {
         
         guard let givenInteger = Int(theUserGuess) else {
             feedback = "please provide an integer between 1 and 100"
             return
-        
-        
-        
+            
+            
+            
         }
         guard givenInteger > 0, givenInteger < 101 else{
             feedback = "please provide an integer between 1 and 100"
             return
-    
+        }
+        
+        // Actually check to see if the user made the correct guess.
+        feedback = "You made a guess."
+        
     }
     
 }
