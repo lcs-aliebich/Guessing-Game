@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var theUserGuess = ""
-    let target = Int.random(in: 1...100)
+    
+    @State var target = Int.random(in: 1...100)
+    
     @State private var feedback = ""
+    
+    @State private var gameOver = false
+    
     var body: some View {
         
         NavigationView {
@@ -19,7 +24,7 @@ struct ContentView: View {
                 
                 Text ("Im thinking of a number between 1 and 100 guess what it is.")
                     .font(.title)
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.black)
                     .padding([.top, .leading, .trailing])
                 
                 
@@ -38,6 +43,9 @@ struct ContentView: View {
                 Text(" \(feedback)")
                 Spacer()
                 
+                Button("reset game") {
+                    resetGame()
+                }
                 
             }
             .navigationTitle("Guessing Game")
@@ -60,11 +68,28 @@ struct ContentView: View {
             return
         }
         
-        // Actually check to see if the user made the correct guess.
-        feedback = "You made a guess."
-        
+        if givenInteger == target {
+            feedback = "you guessed it!"
+            gameOver = true
+            // Actually check to see if the user made the correct guess.
+            
+        }
+        else if givenInteger > target {
+            feedback = "too high"
+        }
+        else if givenInteger < target {
+            feedback = "too low"
+        }
     }
     
+
+    func resetGame() {
+        target = Int.random(in: 1...100)
+        
+        theUserGuess = ""
+        feedback = ""
+    }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
