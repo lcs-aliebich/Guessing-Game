@@ -19,12 +19,13 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            VStack {
+            VStack(alignment: .center) {
                 
                 
                 Text ("Im thinking of a number between 1 and 100 guess what it is.")
                     .font(.title)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
                     .padding([.top, .leading, .trailing])
                 
                 
@@ -48,7 +49,7 @@ struct ContentView: View {
                 }
                 
             }
-            .navigationTitle("Guessing Game")
+            .navigationTitle("GuessingGame")
         }
     }
     
@@ -82,19 +83,21 @@ struct ContentView: View {
         }
     }
     
-
+    
     func resetGame() {
         target = Int.random(in: 1...100)
         
         theUserGuess = ""
         feedback = ""
     }
-        
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
+            
     }
 }
 
